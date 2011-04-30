@@ -1,4 +1,21 @@
-Initial load of readme file for this project
-We'll need to put more here later.
+Code should be self explainatory.
 
-Code should be self explainatory though.
+Example Usage:
+
+import com.banditrevolvers.ScanLines;
+
+var mScanlines:ScanLines
+
+//Creates a ScanLine sprite
+mScanLines = new ScanLines();
+mScanlines.setDimensionsFromMovieClip(testarea);
+mScanlines.setPattern(ScanLines.PATTERN_HORIZONTAL);
+mScanlines.drawLines();	
+
+//Add the sprite whereever you need it
+this.addChild(mScanlines);
+
+If you have a movie clip that you want to have the scanlines overlay you can use the
+setDimensionsFromMovieClip method to automatically set the dimensions.
+
+
