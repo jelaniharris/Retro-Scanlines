@@ -1,5 +1,4 @@
-package com.banditrevolvers 
-{
+package com.banditrevolvers {
 	import flash.display.BitmapData;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -10,8 +9,8 @@ package com.banditrevolvers
 	public class ScanLines extends Sprite	{
 		
 		//Patterns
-		public static const PATTERN_VERTICAL:Array = 	[[1], [0]]; 
-		public static const PATTERN_HORIZONTAL:Array = 	[[1, 0]];
+		public static const PATTERN_VERTICAL:Array = 	[[1, 0]]; 
+		public static const PATTERN_HORIZONTAL:Array = 	[[1], [0]];
 		public static const PATTERN_GRID:Array 	= 		[[1, 0],
 														 [1, 0]];
 		public static const PATTERN_DIAGONAL:Array = 	[[0, 0, 1],
@@ -19,26 +18,27 @@ package com.banditrevolvers
 														 [1, 0, 0]];												
 		
 		//Colors
-		public static const COLORS_BLACK:Array		= [0x40000000, 0x00FFFFFF];
+		public static const COLORS_BLACK:Array = [0x40000000, 0x00FFFFFF];
 		
-		//private var mScanlines:Sprite;		
-		private var mPattern:Array
+		private var mPattern:Array;
 		private var mColors:Array;
 		
 		private var mWidth:uint;
 		private var mHeight:uint;
 		
-		
 		public function ScanLines() {
-			//mScanlines = new Sprite();
-			mPattern = PATTERN_HORIZONTAL;
-			mColors = COLORS_BLACK;
-			drawLines();
+			setPatternAndColors(PATTERN_HORIZONTAL, COLORS_BLACK);
+			//drawLines();
 		}
 		
 		public function setDimensionsFromMovieClip(mov:MovieClip):void {
 			setWidth(mov.width);
 			setHeight(mov.height);
+		}
+		
+		public function setPositionFromMovieClip(mov:MovieClip):void {
+			this.x = mov.x;
+			this.y = mov.y;
 		}
 		
 		public function setWidth(val:uint):void { mWidth = val; }
@@ -58,13 +58,12 @@ package com.banditrevolvers
 			}
 		}
 		
-		public function createTile() {
-			
-			var pat_columns:int = mPattern.length;		
-			var pat_rows:int = mPattern[0].length;	
+		public function createTile():BitmapData {
+			var pat_columns:int = mPattern[0].length;		
+			var pat_rows:int = mPattern.length;	
 			
 			var bit_data:BitmapData = new BitmapData(pat_columns, pat_rows, true, 0x0);			
-			for (var pixel_y:int = 0; pixel_y < pat_rows; pixel_y++) {				
+			for (var pixel_y:int = 0; pixel_y < pat_rows; pixel_y++) {
 				for (var pixel_x:int = 0; pixel_x < pat_columns; pixel_x++) {
 					
 					var pixel_color:int = mColors[mPattern[pixel_y][pixel_x]];
